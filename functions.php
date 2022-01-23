@@ -155,8 +155,10 @@ function calculateTotal(array $hand): int
  */
 function stand(): void
 {
-    while (calculateTotal($_SESSION['computerHand']) < 21) {
-        hit(CPU);
+    if(calculateTotal($_SESSION['playerHand']) >= 21){
+        while (calculateTotal($_SESSION['computerHand']) < 21) {
+            hit(CPU);
+        }
     }
 }
 
