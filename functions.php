@@ -91,7 +91,7 @@ function handlePost()
         }
     } else if (isset($_POST['reset'])) {
         session_destroy();
-        return header("Location: index.php");
+        return header("Location: Exercise1.phtml");
     } else if (isset($_POST['stand'])) {
         stand();
     }

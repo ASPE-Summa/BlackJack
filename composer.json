@@ -1,0 +1,10 @@
+{
+    "name": "aspe/blackjack",
+    "authors": [
+        {
+            "name": "Peter Askey",
+            "email": "aspe@summacollege.nl"
+        }
+    ],
+    "require": {}
+}
