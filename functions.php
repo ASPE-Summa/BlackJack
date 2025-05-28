@@ -86,7 +86,7 @@ function handlePost()
 {
     if (isset($_POST['hit'])) {
         hit(PLAYER);
-        if (calculateTotal($_SESSION['computerHand']) < 21) {
+        if (calculateTotal($_SESSION['computerHand']) < 17) {
             hit(CPU);
         }
     } else if (isset($_POST['reset'])) {
@@ -155,10 +155,12 @@ function calculateTotal(array $hand): int
  */
 function stand(): void
 {
-    if(calculateTotal($_SESSION['playerHand']) >= 21){
-        while (calculateTotal($_SESSION['computerHand']) < 21) {
-            hit(CPU);
-        }
+    $cpuTotal = calculateTotal($_SESSION['computerHand']);
+    
+    while ($cpuTotal < 17) 
+    {
+        hit(CPU);
+        $cpuTotal = calculateTotal($_SESSION['computerHand']);
     }
 }
 
@@ -176,7 +178,7 @@ function calculateWinner(): string
         return '<h1>It\'s a tie!</h1>';
     } elseif (($playerTotal > $cpuTotal || $cpuTotal > 21) && $playerTotal <= 21) {
         if ($playerTotal == 21) {
-            return '<h1>BLACKJACK! YOU WIN!</h1>';
+            return '<h1>YOU WIN!</h1>';
         }
         return '<h1>Congratulations, you are the winner!</h1>';
     } else {
